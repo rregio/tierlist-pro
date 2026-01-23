@@ -1,0 +1,57 @@
+{
+  "title": "Ranking de Linguagens de Programação",
+  "lista": [
+    {
+      "nome": "JavaScript",
+      "tipo": "Frontend/Backend",
+      "ano": 1995,
+	  "imagem":"https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+    },
+    {
+      "nome": "Python",
+      "tipo": "Dados/IA",
+      "ano": 1991,
+	  "imagem":"https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
+    },
+    {
+      "nome": "C++",
+      "tipo": "Performance",
+      "ano": 1985,
+	  "imagem":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/500px-ISO_C%2B%2B_Logo.svg.png"
+    },
+    {
+      "nome": "Java",
+      "tipo": "Enterprise",
+      "ano": 1995,
+	  "imagem":"https://cdn-icons-png.flaticon.com/512/5968/5968282.png"
+    },
+    {
+      "nome": "Rust",
+      "tipo": "Sistemas",
+      "ano": 2010,
+	  "imagem":"https://1000logos.net/wp-content/uploads/2025/03/Rust-Emblem.png"
+    },
+    {
+      "nome": "Go",
+      "tipo": "Cloud",
+      "ano": 2009,
+	  "imagem":"https://w7.pngwing.com/pngs/566/160/png-transparent-golang-hd-logo.png"
+    },
+    {
+      "nome": "Ruby",
+      "tipo": "Web",
+      "ano": 1995,
+	  "imagem":"https://upload.wikimedia.org/wikipedia/commons/f/f1/Ruby_logo.png"
+    },
+    {
+      "nome": "PHP",
+      "tipo": "Web",
+      "ano": 1994,"imagem":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1024px-PHP-logo.svg.png"
+    },
+    {
+      "nome": "TypeScript",
+      "tipo": "Frontend",
+      "ano": 2012,"imagem":"https://images.icon-icons.com/2415/PNG/512/typescript_plain_logo_icon_146316.png"
+    }
+  ]
+}
