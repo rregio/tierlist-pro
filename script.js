@@ -92,8 +92,29 @@ downloadBtn.addEventListener('click', function() {
     // Usamos a biblioteca html2canvas
     html2canvas(tierListArea, {
         backgroundColor: "#121212", // Garante o fundo escuro na imagem
-        useCORS: true // Permite carregar imagens de outros sites (como o link do Mario que você deu)
-    }).then(canvas => {
+        useCORS: true // Permite carregar imagens de outros sites
+    }).then(originalCanvas => {
+        // Criamos um novo canvas para adicionar o rodapé com a atribuição
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const footerHeight = 40;
+
+        canvas.width = originalCanvas.width;
+        canvas.height = originalCanvas.height + footerHeight;
+
+        // Preenchemos o fundo com a mesma cor da TierList
+        ctx.fillStyle = "#121212";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Desenhamos a TierList original
+        ctx.drawImage(originalCanvas, 0, 0);
+
+        // Adicionamos o texto de atribuição
+        ctx.fillStyle = "#888888";
+        ctx.font = "16px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Desenvolvido por https://youtube.com/@naoehpro", canvas.width / 2, originalCanvas.height + 25);
+
         // Criamos um link temporário para o download
         const link = document.createElement('a');
         link.download = 'minha-tierlist.png';
