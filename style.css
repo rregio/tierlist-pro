@@ -118,3 +118,18 @@ body {
     padding: 10px;
     background-color: #121212; 
 }
+
+.developer-attribution {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #888;
+}
+
+.developer-attribution a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.developer-attribution a:hover {
+    text-decoration: underline;
+}
