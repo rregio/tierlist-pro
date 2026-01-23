@@ -1,135 +1,55 @@
-/* Configurações Gerais - Dark Mode */
 body {
     background-color: #121212;
     color: #e0e0e0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.container {
-    width: 100%;
-    max-width: 900px;
-    text-align: center;
+.container { width: 100%; max-width: 900px; text-align: center; }
+
+.upload-section { margin-bottom: 20px; padding: 15px; border: 2px dashed #444; border-radius: 10px; }
+
+#downloadBtn {
+    background-color: #4CAF50; color: white; padding: 10px 20px;
+    border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 20px;
 }
 
-.upload-section {
-    margin-bottom: 30px;
-    padding: 20px;
-    border: 2px dashed #333;
-    border-radius: 10px;
-}
-
-/* Estilo das Linhas da TierList */
-.tier-row {
-    display: flex;
-    min-height: 100px;
-    border-bottom: 1px solid #333;
-    background-color: #1a1a1a;
-    margin-bottom: 5px;
-}
+.tier-row { display: flex; min-height: 100px; border-bottom: 1px solid #333; background-color: #1a1a1a; margin-bottom: 5px; }
 
 .tier-label {
-    width: 100px;
+    width: 120px; /* Aumentado um pouco para textos customizados */
+    min-width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 14px; /* Diminuído para caber frases */
     color: #000;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    word-break: break-word; /* Faz o texto quebrar se for muito longo */
 }
 
-/* Cores dos Ranks */
+/* Cores originais mantidas */
 .s-rank { background-color: #ff7f7f; }
 .a-rank { background-color: #ffbf7f; }
 .b-rank { background-color: #ffff7f; }
 .c-rank { background-color: #7fff7f; }
 .d-rank { background-color: #7fbfff; }
 
-.tier-dropzone {
-    flex-grow: 1;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px;
-    gap: 10px;
-    min-width: 200px;
-}
+.tier-dropzone { flex-grow: 1; display: flex; flex-wrap: wrap; padding: 10px; gap: 10px; }
 
-/* Estilo dos Itens (Cards) */
 .item-card {
-    width: 80px;
-    height: 80px;
-    background-color: #333;
-    cursor: grab;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    border-radius: 4px;
-    border: 2px solid transparent;
+    width: 80px; height: 80px; background-color: #333; cursor: grab;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px; overflow: hidden; border: 2px solid transparent;
 }
 
 .item-card:hover { border-color: #fff; }
+.item-card img { width: 100%; height: 100%; object-fit: cover; }
+.item-initials { font-weight: bold; font-size: 18px; color: #fff; }
 
-.item-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Estilo para itens sem imagem (Sigla) */
-.item-initials {
-    font-weight: bold;
-    font-size: 20px;
-    color: #fff;
-    text-transform: uppercase;
-}
-
-/* Área de repouso dos itens */
-.bank {
-    background-color: #000;
-    border: 2px solid #333;
-    min-height: 150px;
-}
-.actions {
-    margin: 20px 0;
-}
-
-#downloadBtn {
-    background-color: #4CAF50; /* Verde */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-#downloadBtn:hover {
-    background-color: #45a049;
-}
-
-/* Garante que o fundo da imagem saia escuro no print */
-.tier-container {
-    padding: 10px;
-    background-color: #121212; 
-}
-
-.developer-attribution {
-    margin-top: 30px;
-    font-size: 12px;
-    color: #888;
-}
-
-.developer-attribution a {
-    color: #4CAF50;
-    text-decoration: none;
-}
-
-.developer-attribution a:hover {
-    text-decoration: underline;
-}
+.bank { background-color: #000; border: 2px solid #333; min-height: 150px; margin-top: 10px; }

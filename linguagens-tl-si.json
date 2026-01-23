@@ -1,0 +1,56 @@
+{
+  "title": "Ranking de Linguagens de Programação",
+  "rank":["melhor do mundo","bom","aceitável","ruim","pior do mundo"],
+  "lista": [
+    {
+      "nome": "JavaScript",
+      "tipo": "Frontend/Backend",
+      "ano": 1995
+    },
+    {
+      "nome": "Python",
+      "tipo": "Dados/IA",
+      "ano": 1991
+    },
+    {
+      "nome": "C++",
+      "tipo": "Performance",
+      "ano": 1985
+    },
+    {
+      "nome": "Java",
+      "tipo": "Enterprise",
+      "ano": 1995
+    },
+    {
+      "nome": "Rust",
+      "tipo": "Sistemas",
+      "ano": 2010
+    },
+    {
+      "nome": "Go",
+      "tipo": "Cloud",
+      "ano": 2009
+    },
+    {
+      "nome": "Ruby",
+      "tipo": "Web",
+      "ano": 1995
+    },
+    {
+      "nome": "PHP",
+      "tipo": "Web",
+      "ano": 1994
+    },
+    {
+      "nome": "TypeScript",
+      "tipo": "Frontend",
+      "ano": 2012
+    },
+	{
+		"nome":"Lua Language",
+		"tipo":"gamedev",
+		"ano":1993
+	}
+  ]
+}

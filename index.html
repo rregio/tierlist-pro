@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TierList Maker Pro</title>
+    <title>Custom TierList Maker</title>
     <link rel="stylesheet" href="style.css">
-	
 </head>
 <body>
 
@@ -17,44 +16,40 @@
             <input type="file" id="jsonInput" accept=".json">
         </div>
 
+        <div class="actions">
+            <button id="downloadBtn">📸 Baixar TierList (Imagem)</button>
+        </div>
+
         <h2 id="listTitle">Escolha uma lista para começar</h2>
 
         <div class="tier-container">
-            <div class="tier-row" data-tier="S">
-                <div class="tier-label s-rank">S</div>
+            <div class="tier-row">
+                <div class="tier-label s-rank" data-index="0">S</div>
                 <div class="tier-dropzone"></div>
             </div>
-            <div class="tier-row" data-tier="A">
-                <div class="tier-label a-rank">A</div>
+            <div class="tier-row">
+                <div class="tier-label a-rank" data-index="1">A</div>
                 <div class="tier-dropzone"></div>
             </div>
-            <div class="tier-row" data-tier="B">
-                <div class="tier-label b-rank">B</div>
+            <div class="tier-row">
+                <div class="tier-label b-rank" data-index="2">B</div>
                 <div class="tier-dropzone"></div>
             </div>
-            <div class="tier-row" data-tier="C">
-                <div class="tier-label c-rank">C</div>
+            <div class="tier-row">
+                <div class="tier-label c-rank" data-index="3">C</div>
                 <div class="tier-dropzone"></div>
             </div>
-            <div class="tier-row" data-tier="D">
-                <div class="tier-label d-rank">D</div>
+            <div class="tier-row">
+                <div class="tier-label d-rank" data-index="4">D</div>
                 <div class="tier-dropzone"></div>
             </div>
         </div>
-		
-		<div class="actions">
-			<button id="downloadBtn">📸 Baixar TierList (Imagem)</button>
-		</div>
 
         <h3>Itens Disponíveis</h3>
         <div id="itemBank" class="tier-dropzone bank"></div>
-
-        <footer class="developer-attribution">
-            Desenvolvido por <a href="https://youtube.com/@naoehpro" target="_blank">naoehpro</a>
-        </footer>
     </div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
