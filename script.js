@@ -1,6 +1,7 @@
 const jsonInput = document.getElementById('jsonInput');
 const itemBank = document.getElementById('itemBank');
 const listTitle = document.getElementById('listTitle');
+const downloadBtn = document.getElementById('downloadBtn');
 
 // 1. Escutar quando um arquivo for selecionado
 jsonInput.addEventListener('change', function(e) {
@@ -9,8 +10,12 @@ jsonInput.addEventListener('change', function(e) {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-        const data = JSON.parse(e.target.result);
-        renderTierList(data);
+        try {
+            const data = JSON.parse(e.target.result);
+            renderTierList(data);
+        } catch (err) {
+            alert("Erro ao ler o arquivo JSON. Verifique o formato.");
+        }
     };
     reader.readAsText(file);
 });
@@ -18,7 +23,7 @@ jsonInput.addEventListener('change', function(e) {
 // 2. Renderizar os itens na tela
 function renderTierList(data) {
     listTitle.innerText = data.title;
-    itemBank.innerHTML = ''; // Limpa o banco atual
+    itemBank.innerHTML = ''; 
 
     data.lista.forEach((item, index) => {
         const card = document.createElement('div');
@@ -26,8 +31,8 @@ function renderTierList(data) {
         card.draggable = true;
         card.id = `item-${index}`;
         
-        // O nome do item é usado como "title" (texto ao passar o mouse)
-        const nomeItem = item.jogo || item.nome || "Item";
+        // Define o nome do item (suportando diferentes chaves no JSON)
+        const nomeItem = item.jogo || item.nome || item.item || "Item";
         card.title = nomeItem;
 
         if (item.imagem && item.imagem.trim() !== "") {
@@ -36,22 +41,30 @@ function renderTierList(data) {
             img.alt = nomeItem;
             card.appendChild(img);
         } else {
-            // Se não tiver imagem, cria a sigla
+            // LÓGICA NOVA: 3 primeiras letras + última letra
             const initials = document.createElement('span');
             initials.className = 'item-initials';
-            initials.innerText = getInitials(nomeItem);
+            initials.innerText = formatNameInitials(nomeItem);
             card.appendChild(initials);
         }
 
-        // Eventos de Drag para o Card
         card.addEventListener('dragstart', dragStart);
         itemBank.appendChild(card);
     });
 }
 
-// Função auxiliar para pegar iniciais (Ex: Super Mario -> SM)
-function getInitials(name) {
-    return name.split(' ').map(word => word[0]).join('').slice(0, 3);
+// Função para formatar o texto (Ex: Javascript -> Javt)
+function formatNameInitials(name) {
+    // Remove espaços para não contar espaço como caractere
+    const cleanName = name.replace(/\s+/g, '');
+    
+    if (cleanName.length <= 4) {
+        return cleanName; // Se o nome for curto (C++, PHP, Go), mostra ele todo
+    }
+
+    const firstThree = cleanName.substring(0, 3); // Pega as 3 primeiras
+    const lastLetter = cleanName.slice(-1);       // Pega a última
+    return firstThree + lastLetter;
 }
 
 // 3. Lógica de Drag and Drop
@@ -62,7 +75,6 @@ function dragStart(e) {
     setTimeout(() => this.style.display = 'none', 0);
 }
 
-// Configurar todas as zonas de drop
 const dropzones = document.querySelectorAll('.tier-dropzone');
 
 dropzones.forEach(zone => {
@@ -83,39 +95,16 @@ dropzones.forEach(zone => {
         draggedItem.style.display = 'flex';
     });
 });
-const downloadBtn = document.getElementById('downloadBtn');
 
+// 4. Lógica do Botão de Download (Foto)
 downloadBtn.addEventListener('click', function() {
-    // Selecionamos a área que queremos "fotografar"
     const tierListArea = document.querySelector('.tier-container');
 
-    // Usamos a biblioteca html2canvas
     html2canvas(tierListArea, {
-        backgroundColor: "#121212", // Garante o fundo escuro na imagem
-        useCORS: true // Permite carregar imagens de outros sites
-    }).then(originalCanvas => {
-        // Criamos um novo canvas para adicionar o rodapé com a atribuição
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const footerHeight = 40;
-
-        canvas.width = originalCanvas.width;
-        canvas.height = originalCanvas.height + footerHeight;
-
-        // Preenchemos o fundo com a mesma cor da TierList
-        ctx.fillStyle = "#121212";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Desenhamos a TierList original
-        ctx.drawImage(originalCanvas, 0, 0);
-
-        // Adicionamos o texto de atribuição
-        ctx.fillStyle = "#888888";
-        ctx.font = "16px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText("Desenvolvido por https://youtube.com/@naoehpro", canvas.width / 2, originalCanvas.height + 25);
-
-        // Criamos um link temporário para o download
+        backgroundColor: "#121212",
+        useCORS: true,
+        scale: 2 // Melhora a qualidade da imagem
+    }).then(canvas => {
         const link = document.createElement('a');
         link.download = 'minha-tierlist.png';
         link.href = canvas.toDataURL("image/png");
