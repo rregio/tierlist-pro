@@ -3,6 +3,7 @@ const itemBank = document.getElementById('itemBank');
 const listTitle = document.getElementById('listTitle');
 const downloadBtn = document.getElementById('downloadBtn');
 const tierLabels = document.querySelectorAll('.tier-label');
+const itemCount = document.getElementById('itemCount');
 
 const DEFAULT_RANKS = ["S", "A", "B", "C", "D"];
 
@@ -55,8 +56,10 @@ function renderTierList(data) {
         }
 
         card.addEventListener('dragstart', dragStart);
+        card.addEventListener('dragend', dragEnd);
         itemBank.appendChild(card);
     });
+    updateItemCount();
 }
 
 function formatNameInitials(name) {
@@ -65,13 +68,28 @@ function formatNameInitials(name) {
     return cleanName.substring(0, 3) + cleanName.slice(-1);
 }
 
+function updateItemCount() {
+    itemCount.innerText = itemBank.querySelectorAll('.item-card').length;
+}
+
 // Drag and Drop
 let draggedItem = null;
+let draggedItemParent = null;
 const dropzones = document.querySelectorAll('.tier-dropzone');
 
 function dragStart() {
     draggedItem = this;
+    draggedItemParent = this.parentNode;
     setTimeout(() => this.style.display = 'none', 0);
+}
+
+function dragEnd() {
+    if (draggedItem && draggedItem.style.display === 'none') {
+        draggedItemParent.appendChild(draggedItem);
+        draggedItem.style.display = 'flex';
+    }
+    draggedItem = null;
+    draggedItemParent = null;
 }
 
 dropzones.forEach(zone => {
@@ -79,6 +97,9 @@ dropzones.forEach(zone => {
     zone.addEventListener('drop', function() {
         this.appendChild(draggedItem);
         draggedItem.style.display = 'flex';
+        draggedItem = null;
+        draggedItemParent = null;
+        updateItemCount();
     });
 });
 
