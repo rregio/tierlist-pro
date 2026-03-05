@@ -49,6 +49,21 @@ body {
 }
 
 .item-card:hover { border-color: #fff; }
+.item-card.has-link { position: relative; }
+.item-card.has-link::after {
+    content: '🔗';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 10px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 3px;
+    padding: 1px 3px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.item-card.has-link:hover::after { opacity: 1; }
 .item-card img { width: 100%; height: 100%; object-fit: cover; }
 .item-initials { font-weight: bold; font-size: 18px; color: #fff; }
 
