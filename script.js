@@ -55,6 +55,19 @@ function renderTierList(data) {
             card.appendChild(initials);
         }
 
+        // Encontra o primeiro link extra (que não seja 'imagem') no objeto do item
+        const extraLink = findExtraLink(item);
+        if (extraLink) {
+            card.dataset.link = extraLink;
+            card.classList.add('has-link');
+            card.addEventListener('click', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    window.open(card.dataset.link, '_blank');
+                }
+            });
+        }
+
         card.addEventListener('dragstart', dragStart);
         card.addEventListener('dragend', dragEnd);
         itemBank.appendChild(card);
@@ -66,6 +79,17 @@ function formatNameInitials(name) {
     const cleanName = name.replace(/\s+/g, '');
     if (cleanName.length <= 4) return cleanName;
     return cleanName.substring(0, 3) + cleanName.slice(-1);
+}
+
+// Retorna o primeiro link (http/https) encontrado no item que não seja o campo 'imagem'
+function findExtraLink(item) {
+    for (const key in item) {
+        if (key === 'imagem') continue;
+        if (typeof item[key] === 'string' && item[key].match(/^https?:\/\//)) {
+            return item[key];
+        }
+    }
+    return null;
 }
 
 function updateItemCount() {
